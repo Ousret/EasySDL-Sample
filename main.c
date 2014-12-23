@@ -73,6 +73,8 @@ int main() {
 	
 	while (1) {
 		
+		SDL_UpdateEvents(&in); //Manual update event mapping, SDL_generate do update mapping too..
+		
 		if (SDL_isKeyPressed(SDLK_UP)) {
 			if (posY > 5) {
 				posY-=5;
@@ -157,7 +159,12 @@ int main() {
 		
 		if (in.quit == 1) break;
 		
-		SDL_generate(ingame);
+		if (update) {
+			SDL_generate(ingame);
+			update = 0;
+		}
+		
+		SDL_Delay(50);
 		
 		if (animate >= 4) animate = 1;
 	
