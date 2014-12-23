@@ -132,7 +132,7 @@ int main() {
 			if (SDL_nbTexture(ingame) < 2) {
 				SDL_newTexture(ingame, NULL, "impact.png", posX, posY, 120, 120);
 			}else{
-				SDL_modTexture(ingame, 1, "impact.png", posX, posY, 120, 120);
+				SDL_modTexture(ingame, 1, posX, posY, 120, 120);
 			}
 			
 			SDL_generate(ingame);
