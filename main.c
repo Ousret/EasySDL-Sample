@@ -45,7 +45,7 @@ void generatetrap() {
 
 int main() {
 	
-	int current_level = 1, nb_life = 5, posX = 50, posY = 50, update = 0, animate = 1;
+	int current_level = 1, nb_life = 5, posX = 50, posY = 50, update = 1, animate = 1;
 	char t_current_level[50], t_nb_life[50];
 	
 	t_window *ingame = SDL_newWindow("ESDL Sample", 0, 0, 800, 600);
