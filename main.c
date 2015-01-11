@@ -66,8 +66,8 @@ int main() {
 	SDL_newText(ingame, NULL, t_current_level, colorGreenLight, 20, 575);
 	SDL_newText(ingame, NULL, t_nb_life, colorGreenLight, 90, 575);
 	
-	SDL_preloadwav("explosion.wav");
-	SDL_preloadwav("Female/unstoppable.wav"); 
+	SDL_loadSound("explosion.wav");
+	SDL_loadSound("Female/unstoppable.wav"); 
 
 	generatetrap();
 	
@@ -114,7 +114,7 @@ int main() {
 		/* Check if player win */
 		if (posX > 590 && posY > 440) {
 			
-			SDL_playwav("Female/unstoppable.wav", 1, NULL);
+			SDL_playSound("Female/unstoppable.wav", 1);
 			current_level++;
 			sprintf(t_current_level, "Level %i", current_level);
 			SDL_modText(ingame, 0, t_current_level, colorGreenLight, 20, 575);
@@ -136,7 +136,7 @@ int main() {
 			}
 			
 			SDL_generate(ingame);
-			SDL_playwav("explosion.wav", 1, NULL);
+			SDL_playSound("explosion.wav", 1);
 			//generatetrap();
 			nb_life--;
 			posX = 50;
