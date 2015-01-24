@@ -48,7 +48,7 @@ int main() {
 	int current_level = 1, nb_life = 5, posX = 50, posY = 50, update = 1, animate = 1;
 	char t_current_level[50], t_nb_life[50];
 	
-	t_window *ingame = SDL_newWindow("ESDL Sample", 0, 0, 800, 600);
+	t_context *ingame = SDL_newContext("ESDL Sample", 0, 0, 800, 600);
 	
 	srand(time (NULL));
 	
@@ -58,11 +58,11 @@ int main() {
 	sprintf(t_current_level, "Level %i", current_level);
 	sprintf(t_nb_life, "| Life %i", nb_life);
 	
-	SDL_init(800, 600, 0, "ESDL Sample", "M_ICON.png", 1, "global.ttf", 20, 1); //800x600 +tff_support +audio_support
+	SDL_initWindow(800, 600, 0, "ESDL Sample", "M_ICON.png", 1, "global.ttf", 20, 1); //800x600 +tff_support +audio_support
 	
 	/* Begin to load what is needed for ingame window */
-	SDL_newTexture(ingame, NULL, "APP_BG_SAMPLE.png", 0, 0, 800, 600);
-	SDL_newSprite(ingame, "panda_sp.png", colorGreenLight, 145, 144, 36, 33, posX, posY, DIR_DOWN, 1, 0);
+	SDL_newImage(ingame, NULL, "APP_BG_SAMPLE.png", 0, 0);
+	SDL_newSprite(ingame, "panda_sp.png", colorGreenLight, 36, 33, posX, posY, DIR_DOWN, 1, 0);
 	SDL_newText(ingame, NULL, t_current_level, colorGreenLight, 20, 575);
 	SDL_newText(ingame, NULL, t_nb_life, colorGreenLight, 90, 575);
 	
@@ -114,11 +114,11 @@ int main() {
 		/* Check if player win */
 		if (posX > 590 && posY > 440) {
 			
-			SDL_playSound("Female/unstoppable.wav", 1);
+			SDL_playSound("Female/unstoppable.wav");
 			current_level++;
 			sprintf(t_current_level, "Level %i", current_level);
 			SDL_modText(ingame, 0, t_current_level, colorGreenLight, 20, 575);
-			SDL_delTexture(ingame, 1);
+			SDL_delImage(ingame, 1);
 			posX = 50;
 			posY = 50;
 			generatetrap();
@@ -129,14 +129,14 @@ int main() {
 		if (cellules[600/posY][800/posX] == 1) {
 		
 			SDL_modSprite(ingame, 0, posX, posY, DIR_UP, animate, 1);
-			if (SDL_nbTexture(ingame) < 2) {
-				SDL_newTexture(ingame, NULL, "impact.png", posX, posY, 120, 120);
+			if (SDL_nbImage(ingame) < 2) {
+				SDL_newImage(ingame, NULL, "impact.png", posX, posY);
 			}else{
-				SDL_modTexture(ingame, 1, posX, posY, 120, 120);
+				SDL_modImage(ingame, 1, posX, posY);
 			}
 			
 			SDL_generate(ingame);
-			SDL_playSound("explosion.wav", 1);
+			SDL_playSound("explosion.wav");
 			//generatetrap();
 			nb_life--;
 			posX = 50;
@@ -149,7 +149,7 @@ int main() {
 				SDL_modText(ingame, 0, t_current_level, colorGreenLight, 20, 575);
 				sprintf(t_nb_life, "| Life %i", nb_life);
 				SDL_modText(ingame, 1, t_nb_life, colorGreenLight, 90, 575);
-				SDL_delTexture(ingame, 1);
+				SDL_delImage(ingame, 1);
 			}else{
 				sprintf(t_nb_life, "| Life %i", nb_life);
 				SDL_modText(ingame, 1, t_nb_life, colorGreenLight, 90, 575);
@@ -170,7 +170,7 @@ int main() {
 	
 	}
 	
-	SDL_freeWindow(ingame);
+	SDL_freeContext(ingame);
 	return 0;
 
 }
