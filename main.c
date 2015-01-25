@@ -118,10 +118,12 @@ int main() {
 			current_level++;
 			sprintf(t_current_level, "Level %i", current_level);
 			SDL_modText(ingame, 0, t_current_level, colorGreenLight, 20, 575);
-			SDL_delImage(ingame, 1);
+			if (SDL_nbImage(ingame) > 1) SDL_delImage(ingame, 1);
 			posX = 50;
 			posY = 50;
+			SDL_modSprite(ingame, 0, posX, posY, DIR_RIGHT, animate, 0);
 			generatetrap();
+			SDL_generate(ingame);
 			
 		}
 		
@@ -162,9 +164,11 @@ int main() {
 		if (update) {
 			SDL_generate(ingame);
 			update = 0;
+		}else{
+			SDL_Delay(50);
 		}
 		
-		SDL_Delay(50);
+		
 		
 		if (animate >= 4) animate = 1;
 	
