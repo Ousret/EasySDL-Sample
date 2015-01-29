@@ -80,7 +80,7 @@ int main() {
 				posY-=5;
 				update = 1;
 			}
-			SDL_modSprite(ingame, 0, posX, posY, DIR_UP, animate, 0);
+			SDL_editSprite(ingame, 0, posX, posY, DIR_UP, animate, 0);
 			animate++;
 		}
 		
@@ -89,7 +89,7 @@ int main() {
 				posY+=5;
 				update = 1;
 			}
-			SDL_modSprite(ingame, 0, posX, posY, DIR_DOWN, animate, 0);
+			SDL_editSprite(ingame, 0, posX, posY, DIR_DOWN, animate, 0);
 			animate++;
 		}
 		
@@ -98,7 +98,7 @@ int main() {
 				posX-=5;
 				update = 1;
 			}
-			SDL_modSprite(ingame, 0, posX, posY, DIR_LEFT, animate, 0);
+			SDL_editSprite(ingame, 0, posX, posY, DIR_LEFT, animate, 0);
 			animate++;
 		}
 		
@@ -107,7 +107,7 @@ int main() {
 				posX+=5;
 				update = 1;
 			}
-			SDL_modSprite(ingame, 0, posX, posY, DIR_RIGHT, animate, 0);
+			SDL_editSprite(ingame, 0, posX, posY, DIR_RIGHT, animate, 0);
 			animate++;
 		}
 		
@@ -117,11 +117,11 @@ int main() {
 			SDL_playSound("Female/unstoppable.wav");
 			current_level++;
 			sprintf(t_current_level, "Level %i", current_level);
-			SDL_modText(ingame, 0, t_current_level, colorGreenLight, 20, 575);
+			SDL_editText(ingame, 0, t_current_level, colorGreenLight, 20, 575);
 			if (SDL_nbImage(ingame) > 1) SDL_delImage(ingame, 1);
 			posX = 50;
 			posY = 50;
-			SDL_modSprite(ingame, 0, posX, posY, DIR_RIGHT, animate, 0);
+			SDL_editSprite(ingame, 0, posX, posY, DIR_RIGHT, animate, 0);
 			generatetrap();
 			SDL_generate(ingame);
 			
@@ -130,11 +130,11 @@ int main() {
 		/* Check if player is under trap */
 		if (cellules[600/posY][800/posX] == 1) {
 		
-			SDL_modSprite(ingame, 0, posX, posY, DIR_UP, animate, 1);
+			SDL_editSprite(ingame, 0, posX, posY, DIR_UP, animate, 1);
 			if (SDL_nbImage(ingame) < 2) {
 				SDL_newImage(ingame, NULL, "impact.png", posX, posY);
 			}else{
-				SDL_modImage(ingame, 1, posX, posY);
+				SDL_editImage(ingame, 1, posX, posY);
 			}
 			
 			SDL_generate(ingame);
@@ -148,13 +148,13 @@ int main() {
 				current_level = 1;
 				nb_life = 5;
 				sprintf(t_current_level, "Level %i", current_level);
-				SDL_modText(ingame, 0, t_current_level, colorGreenLight, 20, 575);
+				SDL_editText(ingame, 0, t_current_level, colorGreenLight, 20, 575);
 				sprintf(t_nb_life, "| Life %i", nb_life);
-				SDL_modText(ingame, 1, t_nb_life, colorGreenLight, 90, 575);
+				SDL_editText(ingame, 1, t_nb_life, colorGreenLight, 90, 575);
 				SDL_delImage(ingame, 1);
 			}else{
 				sprintf(t_nb_life, "| Life %i", nb_life);
-				SDL_modText(ingame, 1, t_nb_life, colorGreenLight, 90, 575);
+				SDL_editText(ingame, 1, t_nb_life, colorGreenLight, 90, 575);
 			}
 			
 		}
