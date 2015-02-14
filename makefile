@@ -1,7 +1,7 @@
 CC  = gcc -Wall -Wextra
 BIN = Sample
 INC = includes/
-CFLAGS =`sdl-config --libs --cflags` -lSDL_image -lSDL_ttf -lfmodex -lESDL
+CFLAGS =`sdl-config --libs --cflags` -lESDL
 CSDL = `sdl-config --cflags`
 
 $(BIN): main.o
