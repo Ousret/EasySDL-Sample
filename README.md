@@ -2,11 +2,27 @@ EasySDL-Sample
 ==============
 
 Little game made out with ESDL lib. Feel free to improve. 
-Using ESDL 0.4.X software rendering.
+Using ESDL 0.6.x software rendering.
 
-Prerequisite:
+### Prerequisite: EasySDL 0.6.x
 
-ESDL : https://github.com/Ousret/ESDL
-SDL, SDL_image, SDL_mixer, SDL_ttf. (v1.2)
+CMake is needed.
+
+```
+$ git clone https://github.com/Ousret/EasySDL/
+$ cd EasySDL/
+$ cmake -G"Unix Makefiles"
+$ make
+$ sudo make install
+```
+
+Then clone & build this app.
+
+```
+$ git clone https://github.com/Ousret/EasySDL-Sample.git
+$ cd EasySDL-Sample/
+$ make
+$ ./Sample
+```
 
 
